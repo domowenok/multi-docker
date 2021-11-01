@@ -11,7 +11,7 @@ after_success:
   - docker build -t simkamax777/multi-server ./server
   - docker build -t simkamax777/multi-worker ./worker
   # Log in
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin"
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Push to Dockerhub
   - docker push simkamax777/multi-client
   - docker push simkamax777/multi-nginx
