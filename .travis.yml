@@ -1,0 +1,19 @@
+sudo: required
+services:
+  - docker
+before_install:
+  - docker build -t simkamax777/react-test -f ./client/Dockerfile.dev ./client
+scripts:
+  - docker run -e CI=true simkamax777/react-test npm test
+after_success:
+  - docker build -t simkamax777/multi-client ./client
+  - docker build -t simkamax777/multi-nginx ./nginx
+  - docker build -t simkamax777/multi-server ./server
+  - docker build -t simkamax777/multi-worker ./worker
+  # Log in
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID --password-stdin"
+  # Push to Dockerhub
+  - docker push simkamax777/multi-client
+  - docker push simkamax777/multi-nginx
+  - docker push simkamax777/multi-server
+  - docker push simkamax777/multi-worker
