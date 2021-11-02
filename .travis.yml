@@ -18,12 +18,12 @@ after_success:
   - docker push simkamax777/multi-server
   - docker push simkamax777/multi-worker
 deploy:
-  provider: elasticbeansralk
-  region: us-east-2
-  app: multi-docker
-  env: Multidocker-env
-  bucket_name: elasticbeanstalk-us-east-2-127861986344
-  bucket_path: docker-multi
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: 'multi-docker'
+  env: "Multidocker-env"
+  bucket_name: 'elasticbeanstalk-us-east-2-127861986344'
+  bucket_path: 'docker-multi'
   on:
     branch: master
   access_key_id: $AWS_ACCESS_KEY
